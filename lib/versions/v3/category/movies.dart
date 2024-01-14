@@ -64,9 +64,10 @@ class Movies extends Category<V3> {
   /// Map result = await tmdb.v3.movies.getCredits(103);
   ///```
   ///
-  Future<Map> getCredits(int movieId) {
+  Future<Map> getCredits(int movieId, {String? language}) {
     return _v._query(
       '$_endPoint/$movieId/credits',
+      optionalQueries: ['language=${language ?? _v._tmdb.defaultLanguage}'],
     );
   }
 
