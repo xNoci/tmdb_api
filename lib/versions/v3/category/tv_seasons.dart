@@ -174,4 +174,30 @@ class TvSeasons extends Category<V3> {
       optionalQueries: ['language=${language ?? _v._tmdb.defaultLanguage}'],
     );
   }
+
+  ///Powered by our partnership with JustWatch, you can query
+  ///this method to get a list of the streaming/rental/purchase availabilities
+  ///per country by provider.
+  ///
+  ///This is not going to return full deep links, but rather,
+  ///it's just enough information to display what's available where.
+  ///
+  /// Please note: In order to use this data you must attribute
+  /// the source of the data as JustWatch. If we find any usage not
+  /// complying with these terms we will revoke access to the API.
+  ///
+  /// ## Parameters
+  ///
+  /// `tvId`: Id of a tv show.
+  /// `seasonNumber`: season number of that tv show
+  ///
+  /// ## Implementation
+  ///
+  /// ```
+  /// Map result = await tmdb.v3.tvSeasons.getWatchProviders(1429, 1);
+  /// ```
+  ///
+  Future<Map> getWatchProviders(int tvId, int seasonNumber) {
+    return _v._query('tv/$tvId/$_endPoint/$seasonNumber/watch/providers');
+  }
 }
